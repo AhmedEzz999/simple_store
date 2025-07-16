@@ -15,10 +15,7 @@ class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const UpdateProductView()),
-      ),
+      onTap: () => Navigator.pushNamed(context, UpdateProductView.id),
       child: Card(
         color: Colors.white,
         elevation: 3,

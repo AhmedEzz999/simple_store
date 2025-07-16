@@ -4,6 +4,7 @@ import 'package:simple_store/widgets/product_grid_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
+  static String id = 'home_view';
 
   @override
   Widget build(BuildContext context) {

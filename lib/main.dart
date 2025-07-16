@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_store/views/home_view.dart';
+import 'package:simple_store/views/update_product_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeView(),
+      initialRoute: 'home_view',
+      routes: {
+        HomeView.id: (context) => const HomeView(),
+        UpdateProductView.id: (context) => const UpdateProductView(),
+      },
     );
   }
 }
