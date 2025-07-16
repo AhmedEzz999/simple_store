@@ -13,19 +13,10 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late final GetProductsCubit _cubit;
-
   @override
   void initState() {
     super.initState();
-    _cubit = GetProductsCubit();
-    _cubit.getProduct();
-  }
-
-  @override
-  void dispose() {
-    _cubit.close();
-    super.dispose();
+    context.read<GetProductsCubit>().getProduct();
   }
 
   @override
@@ -45,23 +36,17 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-      body: BlocProvider.value(
-        value: _cubit,
-        child: BlocBuilder<GetProductsCubit, GetProductsState>(
-          builder: (context, state) {
-            if (state is GetProductsSuccess) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 14,
-                ),
-                child: ProductGridView(productList: state.productList),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        ),
+      body: BlocBuilder<GetProductsCubit, GetProductsState>(
+        builder: (context, state) {
+          if (state is GetProductsSuccess) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+              child: ProductGridView(productList: state.productList),
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
       ),
       bottomNavigationBar: const BottomBar(),
     );

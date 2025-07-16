@@ -1,31 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class PriceFormField extends StatefulWidget {
-  const PriceFormField({super.key});
-
-  @override
-  State<PriceFormField> createState() => _PriceFormFieldState();
-}
-
-class _PriceFormFieldState extends State<PriceFormField> {
-  late TextEditingController _priceController;
-  @override
-  void initState() {
-    super.initState();
-    _priceController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _priceController.dispose();
-  }
+class PriceFormField extends StatelessWidget {
+  final num price;
+  const PriceFormField({super.key, required this.price});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: _priceController,
+      initialValue: price.toString(),
       maxLines: 1,
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       inputFormatters: [

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:simple_store/models/product_model.dart';
 import 'package:simple_store/widgets/update_product_body.dart';
 
 class UpdateProductView extends StatelessWidget {
-  const UpdateProductView({super.key});
+  final ProductModel product;
+  const UpdateProductView({super.key, required this.product});
   static String id = 'update_product_view';
 
   @override
@@ -16,7 +18,7 @@ class UpdateProductView extends StatelessWidget {
         title: const Text('Update Product', style: TextStyle(fontSize: 28)),
         centerTitle: true,
       ),
-      body: const UpdateProductBody(),
+      body: UpdateProductBody(product: product),
     );
   }
 }
