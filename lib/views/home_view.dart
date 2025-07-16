@@ -40,7 +40,10 @@ class _HomeViewState extends State<HomeView> {
         builder: (context, state) {
           if (state is GetProductsSuccess) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 14,
+                vertical: 14,
+              ),
               child: ProductGridView(productList: state.productList),
             );
           } else {

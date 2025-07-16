@@ -11,23 +11,24 @@ class UpdateProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UpdateProductCubit, UpdateProductState>(
-      listener: (context, state) {
-        if (state is UpdateProductSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              duration: Duration(milliseconds: 1800),
-              content: Text(
-                'Product is updated successfully.',
-                style: TextStyle(fontSize: 24),
+    return BlocProvider(
+      create: (context) => UpdateProductCubit(),
+      child: BlocListener<UpdateProductCubit, UpdateProductState>(
+        listener: (context, state) {
+          if (state is UpdateProductSuccess) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                duration: Duration(milliseconds: 1800),
+                content: Text(
+                  'Product is updated successfully.',
+                  style: TextStyle(fontSize: 24),
+                ),
               ),
-            ),
-          );
-          Navigator.pop(context);
-        }
-      },
-      builder: (context, state) {
-        return Scaffold(
+            );
+            Navigator.pop(context);
+          }
+        },
+        child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
             scrolledUnderElevation: 0,
@@ -37,8 +38,8 @@ class UpdateProductView extends StatelessWidget {
             centerTitle: true,
           ),
           body: UpdateProductBody(product: product),
-        );
-      },
+        ),
+      ),
     );
   }
 }
