@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class UpdateButton extends StatelessWidget {
-  const UpdateButton({super.key});
+  final void Function()? onPressed;
+  const UpdateButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 0,
         fixedSize: Size(MediaQuery.of(context).size.width, 55),

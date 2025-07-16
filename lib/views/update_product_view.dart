@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_store/cubits/update_product_cubit/update_product_cubit.dart';
 import 'package:simple_store/models/product_model.dart';
 import 'package:simple_store/widgets/update_product_body.dart';
 
@@ -9,16 +11,34 @@ class UpdateProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: const Text('Update Product', style: TextStyle(fontSize: 28)),
-        centerTitle: true,
-      ),
-      body: UpdateProductBody(product: product),
+    return BlocConsumer<UpdateProductCubit, UpdateProductState>(
+      listener: (context, state) {
+        if (state is UpdateProductSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              duration: Duration(milliseconds: 1800),
+              content: Text(
+                'Product is updated successfully.',
+                style: TextStyle(fontSize: 24),
+              ),
+            ),
+          );
+          Navigator.pop(context);
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            scrolledUnderElevation: 0,
+            elevation: 0,
+            backgroundColor: Colors.white,
+            title: const Text('Update Product', style: TextStyle(fontSize: 28)),
+            centerTitle: true,
+          ),
+          body: UpdateProductBody(product: product),
+        );
+      },
     );
   }
 }

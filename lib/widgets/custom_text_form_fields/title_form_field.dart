@@ -2,11 +2,19 @@ import 'package:flutter/material.dart';
 
 class TitleFormField extends StatelessWidget {
   final String title;
-  const TitleFormField({super.key, required this.title});
+  final Function(String?)? onSaved;
+  const TitleFormField({super.key, required this.title, required this.onSaved});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'This field is required.';
+        }
+        return null;
+      },
+      onSaved: onSaved,
       initialValue: title,
       maxLines: 2,
       style: const TextStyle(fontSize: 24),

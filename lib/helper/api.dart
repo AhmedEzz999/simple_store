@@ -35,11 +35,11 @@ class Api {
     }
   }
 
-  Future<Map<String, dynamic>> put({
+  Future<void> put({
     required String url,
     required Map<String, dynamic> body,
   }) async {
-    http.Response response = await http.post(
+    http.Response response = await http.put(
       Uri.parse(url),
       body: body,
       headers: {
@@ -48,10 +48,9 @@ class Api {
       },
     );
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
     } else {
       throw Exception(
-        'There is an error with status code ${response.statusCode} with body ${jsonDecode(response.body)}',
+        'There is an error with status code ${response.statusCode}}',
       );
     }
   }

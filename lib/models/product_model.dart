@@ -1,10 +1,10 @@
 class ProductModel {
   final int id;
-  final String title;
+  String title;
   num price;
-  final String description;
+  String description;
   final String category;
-  final String imageSource;
+  String imageSource;
   num rating;
   int ratingCount;
 

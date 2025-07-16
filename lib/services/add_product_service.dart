@@ -1,7 +1,7 @@
 import 'package:simple_store/helper/api.dart';
 import 'package:simple_store/models/product_model.dart';
 
-class AddProduct {
+class AddProductService {
   final String baseUrl = 'https://fakestoreapi.com/products';
 
   Future<ProductModel> addNewProduct({
