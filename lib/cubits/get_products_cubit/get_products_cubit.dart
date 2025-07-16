@@ -6,14 +6,18 @@ part 'get_products_state.dart';
 
 class GetProductsCubit extends Cubit<GetProductsState> {
   GetProductsCubit() : super(GetProductsInitial());
-  Future<List<ProductModel>> getProduct() async {
+  final List<ProductModel> _productList = [];
+
+  Future<void> getProduct() async {
     emit(GetProductsLoading());
-    const String baseUrl = 'https://fakestoreapi.com/products';
-    final List<dynamic> response = await Api().get(url: baseUrl);
-    final List<ProductModel> productList = response
-        .map((product) => ProductModel.fromJson(product))
-        .toList();
-    emit(GetProductsSuccess(productList: productList));
-    return productList;
+    final List<dynamic> response = await Api().get();
+    for (var product in response) {
+      _productList.add(ProductModel.fromJson(product));
+    }
+    emit(GetProductsSuccess(productList: _productList));
+  }
+
+  void refreshProduct() {
+    emit(GetProductsSuccess(productList: _productList));
   }
 }

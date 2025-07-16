@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Api {
-  Future<dynamic> get({required String url}) async {
-    final http.Response response = await http.get(Uri.parse(url));
+  final String baseUrl = 'https://fakestoreapi.com/products';
+
+  Future<dynamic> get() async {
+    final http.Response response = await http.get(Uri.parse(baseUrl));
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_store/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:simple_store/cubits/update_product_cubit/update_product_cubit.dart';
 import 'package:simple_store/models/product_model.dart';
+import 'package:simple_store/widgets/custom_snack_bar.dart';
 import 'package:simple_store/widgets/update_product_body.dart';
 
 class UpdateProductView extends StatelessWidget {
@@ -16,15 +18,8 @@ class UpdateProductView extends StatelessWidget {
       child: BlocListener<UpdateProductCubit, UpdateProductState>(
         listener: (context, state) {
           if (state is UpdateProductSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                duration: Duration(milliseconds: 1800),
-                content: Text(
-                  'Product is updated successfully.',
-                  style: TextStyle(fontSize: 24),
-                ),
-              ),
-            );
+            CustomSnackBar(context);
+            context.read<GetProductsCubit>().refreshProduct();
             Navigator.pop(context);
           }
         },

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ImageFormField extends StatelessWidget {
-  final String imageSource;
+  final String initialValue;
   final Function(String?)? onSaved;
-  const ImageFormField({super.key, required this.imageSource, required this.onSaved});
+  const ImageFormField({
+    super.key,
+    required this.initialValue,
+    required this.onSaved,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,7 @@ class ImageFormField extends StatelessWidget {
         return null;
       },
       onSaved: onSaved,
-      initialValue: imageSource,
+      initialValue: initialValue,
       maxLines: 1,
       style: const TextStyle(fontSize: 24),
       decoration: InputDecoration(

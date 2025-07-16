@@ -18,7 +18,8 @@ class UpdateProductBody extends StatefulWidget {
 
 class _UpdateProductBodyState extends State<UpdateProductBody> {
   final GlobalKey<FormState> _updateProductKey = GlobalKey();
-  late String title, price, desc, image;
+  late String price;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -30,27 +31,28 @@ class _UpdateProductBodyState extends State<UpdateProductBody> {
             spacing: 24,
             children: [
               TitleFormField(
-                title: widget.product.title,
+                initialValue: widget.product.title,
                 onSaved: (value) {
-                  title = value!;
+                  widget.product.title = value!;
                 },
               ),
               DescriptionFormField(
-                description: widget.product.description,
+                initialValue: widget.product.description,
                 onSaved: (value) {
-                  desc = value!;
+                  widget.product.description = value!;
                 },
               ),
               PriceFormField(
-                price: widget.product.price.toString(),
+                initialValue: widget.product.price,
                 onSaved: (value) {
                   price = value!;
+                  widget.product.price = num.parse(price);
                 },
               ),
               ImageFormField(
-                imageSource: widget.product.imageSource,
+                initialValue: widget.product.imageSource,
                 onSaved: (value) {
-                  image = value!;
+                  widget.product.imageSource = value!;
                 },
               ),
               UpdateButton(
@@ -59,10 +61,10 @@ class _UpdateProductBodyState extends State<UpdateProductBody> {
                     _updateProductKey.currentState!.save();
                     context.read<UpdateProductCubit>().updateProduct(
                       id: widget.product.id,
-                      title: title,
-                      price: price,
-                      desc: desc,
-                      image: image,
+                      title: widget.product.title,
+                      price: widget.product.price.toString(),
+                      desc: widget.product.description,
+                      image: widget.product.imageSource,
                       category: widget.product.category,
                     );
                   }

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TitleFormField extends StatelessWidget {
-  final String title;
+  final String initialValue;
   final Function(String?)? onSaved;
-  const TitleFormField({super.key, required this.title, required this.onSaved});
+  const TitleFormField({
+    super.key,
+    required this.initialValue,
+    required this.onSaved,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,7 @@ class TitleFormField extends StatelessWidget {
         return null;
       },
       onSaved: onSaved,
-      initialValue: title,
+      initialValue: initialValue,
       maxLines: 2,
       style: const TextStyle(fontSize: 24),
       decoration: InputDecoration(

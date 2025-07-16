@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DescriptionFormField extends StatelessWidget {
-  final String description;
+  final String initialValue;
   final Function(String?)? onSaved;
   const DescriptionFormField({
     super.key,
-    required this.description,
+    required this.initialValue,
     required this.onSaved,
   });
 
@@ -19,7 +19,7 @@ class DescriptionFormField extends StatelessWidget {
         return null;
       },
       onSaved: onSaved,
-      initialValue: description,
+      initialValue: initialValue,
       maxLines: 3,
       style: const TextStyle(fontSize: 24),
       decoration: InputDecoration(

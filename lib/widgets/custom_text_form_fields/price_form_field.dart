@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class PriceFormField extends StatelessWidget {
-  final String price;
+  final num initialValue;
   final Function(String?)? onSaved;
-  const PriceFormField({super.key, required this.price, required this.onSaved});
+  const PriceFormField({
+    super.key,
+    required this.initialValue,
+    required this.onSaved,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class PriceFormField extends StatelessWidget {
         return null;
       },
       onSaved: onSaved,
-      initialValue: price.toString(),
+      initialValue: initialValue.toString(),
       maxLines: 1,
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       inputFormatters: [
