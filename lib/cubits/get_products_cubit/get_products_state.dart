@@ -6,6 +6,8 @@ final class GetProductsInitial extends GetProductsState {}
 
 final class GetProductsLoading extends GetProductsState {}
 
-final class GetProductsSuccess extends GetProductsState {}
+final class GetProductsSuccess extends GetProductsState {
+  final List<ProductModel> productList;
 
-final class GetProductsFailed extends GetProductsState {}
+  GetProductsSuccess({required this.productList});
+}
