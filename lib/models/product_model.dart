@@ -5,8 +5,6 @@ class ProductModel {
   String description;
   final String category;
   String imageSource;
-  num rating;
-  int ratingCount;
 
   ProductModel({
     required this.id,
@@ -15,8 +13,6 @@ class ProductModel {
     required this.description,
     required this.category,
     required this.imageSource,
-    required this.rating,
-    required this.ratingCount,
   });
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
@@ -25,9 +21,7 @@ class ProductModel {
       price: json['price'] ?? 0,
       description: json['description'] ?? '',
       category: json['category'] ?? '',
-      imageSource: json['image'] ?? '',
-      rating: json['rating']['rate'] ?? 0,
-      ratingCount: json['rating']['count'] ?? 0,
+      imageSource: json['image'] ?? 'https://picsum.photos/200',
     );
   }
 }

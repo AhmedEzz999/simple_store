@@ -18,7 +18,7 @@ class UpdateProductView extends StatelessWidget {
       child: BlocListener<UpdateProductCubit, UpdateProductState>(
         listener: (context, state) {
           if (state is UpdateProductSuccess) {
-            CustomSnackBar(context);
+            customSnackBar(context);
             context.read<GetProductsCubit>().refreshProduct();
             Navigator.pop(context);
           }

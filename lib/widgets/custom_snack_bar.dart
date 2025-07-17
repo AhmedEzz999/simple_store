@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-ScaffoldFeatureController<SnackBar, SnackBarClosedReason> CustomSnackBar(
+ScaffoldFeatureController<SnackBar, SnackBarClosedReason> customSnackBar(
   BuildContext context,
 ) {
   return ScaffoldMessenger.of(context).showSnackBar(
